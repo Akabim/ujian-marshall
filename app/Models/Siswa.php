@@ -18,13 +18,21 @@ class Siswa extends Model
         'email',
         'type',
         '$nilaiPersentase',
+        'nilai_akhir1',
+        'nilai_akhir2',
+        'nilai_akhir3',
+        'nilai_akhir4',
+        'nilai_akhir5',
+        'total_nilai_akhir',
+
+    
        
     ];
 
         // Relasi dengan tabel 'ujian'
-        public function ujian()
+        public function ujians()
         {
-            return $this->hasMany(Ujian::class, 'id_siswa');
+            return $this->belongsTo(Ujian::class, 'id_siswa', 'name');
         }
     
         protected $casts = [

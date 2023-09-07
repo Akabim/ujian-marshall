@@ -19,6 +19,12 @@ return new class extends Migration
             $table->string("email");
             $table->string("password");
             $table->string("type");
+            $table->string("nilai_akhir1")->nullable();
+            $table->string("nilai_akhir2")->nullable();
+            $table->string("nilai_akhir3")->nullable();
+            $table->string("nilai_akhir4")->nullable();
+            $table->string("nilai_akhir5")->nullable();
+            $table->string("total_nilai")->nullable();
             $table->timestamps();
         });
     }

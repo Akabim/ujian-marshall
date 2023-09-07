@@ -2,12 +2,16 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+
+
 
 class LoginRequest extends FormRequest
 {
@@ -27,7 +31,7 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'loginname' => ['required', 'string'],
             'password' => ['required', 'string'],
         ];
     }
@@ -41,13 +45,24 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
-            RateLimiter::hit($this->throttleKey());
+        // if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        //     RateLimiter::hit($this->throttleKey());
 
+        //     throw ValidationException::withMessages([
+        //         'email' => trans('auth.failed'),
+        //     ]);
+        // }
+
+        $user=User::where('email', $this->loginname)->orWhere('name', $this->loginname)->orWhere('nisn', $this->loginname)->orWhere('nik', $this->loginname)->first();
+
+        if(!$user || !Hash::check($this->password, $user->password))
+        {
             throw ValidationException::withMessages([
-                'email' => trans('auth.failed'),
-            ]);
+                         'loginname' => trans('auth.failed'),
+                    ]);
         }
+
+        Auth::login($user,  $this->boolean('remember'));
 
         RateLimiter::clear($this->throttleKey());
     }

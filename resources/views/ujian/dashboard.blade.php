@@ -13,8 +13,7 @@
         @csrf
         <div class="mb-6">
             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama Siswa</label>
-            <select id="countries" name="id_siswa" class=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option selected>Pilih Nama Siswa</option>
+            <select id="siswa" placeholder="Pilih Nama Siswa" name="id_siswa" class="js-example-basic-single bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @foreach ($siswa as $s )
                   <option value="{{ $s->id }}">{{$s->name}}</option>            
                 @endforeach
@@ -101,9 +100,45 @@
     @endforeach
 
     <h2 class="text-lg mt-3 font-medium text-gray-900">
-        {{ __('List Pertanyaan 3') }}
+        {{ __('List Pertanyaan 3 Fixed Wing') }}
     </h2>
         @foreach ($pertanyaan3 as $item)
+        <div class="mb-7">
+            <h3 class=" mb-3 text-md font-medium text-gray-900" for="pertanyaan{{ $item->id }}" >{{ $item->pertanyaan }}</h3>
+            <div class="flex flex-wrap">            
+                <div class="flex items-center mr-4">
+                    <input checked id="default-radio-2" type="radio" value="1" name="jawaban[{{ $item->id }}]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ya</label>
+                </div>
+                <div class="flex items-center">
+                    <input id="default-radio-1" type="radio" value="0" name="jawaban[{{ $item->id }}]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak</label>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    <h2 class="text-lg mt-3 font-medium text-gray-900">
+        {{ __('List Pertanyaan 3 Rotary Wing') }}
+    </h2>
+        @foreach ($pertanyaan4 as $item)
+        <div class="mb-7">
+            <h3 class=" mb-3 text-md font-medium text-gray-900" for="pertanyaan{{ $item->id }}" >{{ $item->pertanyaan }}</h3>
+            <div class="flex flex-wrap">            
+                <div class="flex items-center mr-4">
+                    <input checked id="default-radio-2" type="radio" value="1" name="jawaban[{{ $item->id }}]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="default-radio-2" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Ya</label>
+                </div>
+                <div class="flex items-center">
+                    <input id="default-radio-1" type="radio" value="0" name="jawaban[{{ $item->id }}]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                    <label for="default-radio-1" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">Tidak</label>
+                </div>
+            </div>
+        </div>
+    @endforeach
+    <h2 class="text-lg mt-3 font-medium text-gray-900">
+        {{ __('List Pertanyaan 4') }}
+    </h2>
+        @foreach ($pertanyaan5 as $item)
         <div class="mb-7">
             <h3 class=" mb-3 text-md font-medium text-gray-900" for="pertanyaan{{ $item->id }}" >{{ $item->pertanyaan }}</h3>
             <div class="flex flex-wrap">            

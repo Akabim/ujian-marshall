@@ -56,6 +56,7 @@
             <select id="type" name="type" class="block mt-1 w-full">
                 <option value="siswa">Siswa</option>
                 <option value="guru">Guru</option>
+                <option value="guru">Admin</option>
             </select>
             <x-input-error :messages="$errors->get('type')" class="mt-2" />
         </div>

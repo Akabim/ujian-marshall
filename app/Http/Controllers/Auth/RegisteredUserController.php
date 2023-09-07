@@ -39,8 +39,10 @@ public function store(Request $request)
         'name' => $request->name,
         'email' => $request->email,
         'type' => $request->type,
+        'nik' => $request->nik,
+        'nisn' => $request->nisn,
         'password' => Hash::make($request->password),
-    ]);
+    ]);     
 
     if ($request->type === 'siswa') {
        $siswa = Siswa::create([
@@ -65,7 +67,7 @@ public function store(Request $request)
         ]);
 
         $user->guru()->save($guru);
-    }
+    } 
 
     event(new Registered($user));
 
